@@ -1,16 +1,16 @@
 FROM ubuntu:22.04
 
-ENV GCC_VERSION="12" \
-    LLVM_VERSION="14" \
-    OPENJDK_VERSION="17"
-
 RUN apt-get update \
   && apt-get dist-upgrade -y \
   && apt-get install -y gnupg ca-certificates curl wget unzip zip locales \
-  && locale-gen en_US.UTF-8 \
-  && export DEBIAN_FRONTEND=noninteractive \
-  && export LC_ALL=en_US.UTF-8 \
-  && export TZ=Asia/Shanghai
+  && locale-gen en_US.UTF-8
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LC_ALL=en_US.UTF-8 \
+    TZ=Asia/Shanghai \
+    GCC_VERSION="12" \
+    LLVM_VERSION="14" \
+    OPENJDK_VERSION="17"
 
 RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && export UBUNTU_VERSION="$(. /etc/os-release && echo "$VERSION_ID")" \
