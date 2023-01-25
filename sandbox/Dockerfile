@@ -37,6 +37,7 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && ln -s /usr/bin/gcc-$GCC_VERSION /usr/local/bin/gcc \
   && ln -s /usr/bin/clang-$LLVM_VERSION /usr/local/bin/clang \
   && ln -s /usr/bin/clang++-$LLVM_VERSION /usr/local/bin/clang++ \
+  && ln -s /usr/bin/python2.7 /usr/local/bin/python2 \
   && apt-get clean \
   && apt-get autoclean \
   && apt-get autoremove \
@@ -44,11 +45,12 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
 
 ADD ./testlib/testlib.h /usr/include/
 
-RUN gcc --version \
-  && g++ --version \
-  && clang --version \
-  && clang++ --version \
-  && java -version \
-  && python3 --version \
-  && go version \
-  && node --version
+# RUN gcc --version \
+#   && g++ --version \
+#   && clang --version \
+#   && clang++ --version \
+#   && java -version \
+#   && python2 --version \
+#   && python3 --version \
+#   && go version \
+#   && node --version
