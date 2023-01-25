@@ -1,0 +1,3 @@
+[submodule "sandbox/testlib"]
+	path = sandbox/testlib
+	url = https://github.com/MikeMirzayanov/testlib.git

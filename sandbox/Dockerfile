@@ -10,8 +10,11 @@ RUN apt-get update \
 
 RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && export UBUNTU_VERSION="$(. /etc/os-release && echo "$VERSION_ID")" \
+  # Key: LLVM repo
   && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+  # Key: Python repo
   && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776 \
+  # Key: Go repo
   && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F6BC817356A3D45E \
   && echo "deb http://apt.llvm.org/$UBUNTU_CODENAME/ llvm-toolchain-$UBUNTU_CODENAME-$LLVM_VERSION main" > /etc/apt/sources.list.d/llvm.list \
   && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $UBUNTU_CODENAME main" > /etc/apt/sources.list.d/python.list \
@@ -31,6 +34,8 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && ln -s /usr/bin/gcc-$GCC_VERSION /usr/local/bin/gcc \
   && ln -s /usr/bin/clang-$LLVM_VERSION /usr/local/bin/clang \
   && ln -s /usr/bin/clang++-$LLVM_VERSION /usr/local/bin/clang++
+
+ADD ./testlib/testlib.h /usr/include/
 
 RUN apt-get clean \
   && apt-get autoclean \
