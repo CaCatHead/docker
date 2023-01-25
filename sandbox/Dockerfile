@@ -4,13 +4,11 @@ ENV GCC_VERSION="12" \
     LLVM_VERSION="14" \
     OPENJDK_VERSION="17"
 
-RUN sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
-  && locale-gen \
-  && export LC_ALL=en_US.UTF-8 \
-  && echo 'LC_ALL=en_US.UTF-8' > /etc/default/locale \
-  && apt-get update \
+RUN apt-get update \
   && apt-get dist-upgrade -y \
-  && apt-get install -y gnupg ca-certificates curl wget unzip zip
+  && apt-get install -y gnupg ca-certificates curl wget unzip zip locales \
+  && locale-gen en_US.UTF-8 \
+  && export LC_ALL=en_US.UTF-8
 
 RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && export UBUNTU_VERSION="$(. /etc/os-release && echo "$VERSION_ID")" \
