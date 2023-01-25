@@ -41,7 +41,8 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && ln -s /usr/bin/clang++-$LLVM_VERSION /usr/local/bin/clang++ \
   && apt-get clean \
   && apt-get autoclean \
-  && apt-get autoremove
+  && apt-get autoremove \
+  && rm -rf /var/lib/apt/lists/*
 
 ADD ./testlib/testlib.h /usr/include/
 
@@ -50,6 +51,4 @@ RUN gcc --version \
   && clang --version \
   && clang++ --version \
   && java -version \
-  && python --version \
-  && python3 --version \
   && go --version
