@@ -8,8 +8,8 @@ RUN apt-get update \
   && apt-get dist-upgrade -y \
   && apt-get install -y gnupg ca-certificates curl wget unzip zip
 
-RUN export UBUNTU_CODENAME="$(source /etc/os-release && echo "$UBUNTU_CODENAME")" \
-  && export UBUNTU_VERSION="$(source /etc/os-release && echo "$VERSION_ID")" \
+RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
+  && export UBUNTU_VERSION="$(. /etc/os-release && echo "$VERSION_ID")" \
   && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
   && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776 \
   && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F6BC817356A3D45E \
