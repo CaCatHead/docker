@@ -2,9 +2,13 @@ FROM ubuntu:22.04
 
 ENV GCC_VERSION="12" \
     LLVM_VERSION="14" \
-    OPENJDK_VERSION="17"
+    OPENJDK_VERSION="17" \
+    LC_ALL=en_US.UTF-8
 
-RUN apt-get update \
+RUN sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+  && locale-gen \
+  && echo 'LC_ALL=en_US.UTF-8' > /etc/default/locale \
+  && apt-get update \
   && apt-get dist-upgrade -y \
   && apt-get install -y gnupg ca-certificates curl wget unzip zip
 
