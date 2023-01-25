@@ -24,7 +24,7 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $UBUNTU_CODENAME main" > /etc/apt/sources.list.d/python.list \
   && echo "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu $UBUNTU_CODENAME main" >  /etc/apt/sources.list.d/go.list \
   && apt-get update \
-  && apt-get install -y –no-install-recommends \
+  && apt-get install -y –-no-install-recommends \
       g++-$GCC_VERSION-multilib \
       gcc-$GCC_VERSION-multilib \
       clang-$LLVM_VERSION \
