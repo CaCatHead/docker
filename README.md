@@ -1,10 +1,8 @@
 # CaCatHead Docker Images
 
-[![Publish Docker image](https://github.com/CaCatHead/docker/actions/workflows/ci.yml/badge.svg)](https://github.com/CaCatHead/docker/actions/workflows/ci.yml)
+[![Publish Docker image](https://github.com/CaCatHead/docker/actions/workflows/publish.yml/badge.svg)](https://github.com/CaCatHead/docker/actions/workflows/publish.yml) [![dockerhub](https://img.shields.io/docker/v/yjl9903/sandbox?label=yjl9903%2Fsandbox&logo=docker&sort=date)](https://hub.docker.com/r/yjl9903/sandbox)
 
 ## Sandbox
-
-[![dockerhub](https://img.shields.io/docker/v/yjl9903/sandbox?sort=date)](https://hub.docker.com/r/yjl9903/sandbox)
 
 This image downloads lots of compilers used for building container used to run the online judge service.
 
