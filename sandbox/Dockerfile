@@ -50,6 +50,6 @@ RUN gcc --version \
   && clang --version \
   && clang++ --version \
   && java -version \
-  && python2 --version \
+  && python --version \
   && python3 --version \
   && go --version
