@@ -50,4 +50,5 @@ RUN gcc --version \
   && g++ --version \
   && clang --version \
   && clang++ --version \
-  && java -version
+  && java -version \
+  && go version
