@@ -17,6 +17,7 @@ Support compilers:
 + clang 14.0.6
 + clang++ 14.0.6
 + openjdk 17.0.5
++ python 3.10.6
 + go 1.19.5
 + node 18.13.0
 
