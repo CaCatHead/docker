@@ -10,6 +10,14 @@ This image downloads lots of compilers used for building container used to run t
 docker pull yjl9903/sandbox
 ```
 
+Support compilers:
+
++ gcc 12.1.0
++ g++ 12.1.0
++ clang 14.0.6
++ clang++ 14.0.6
++ openjdk 17.0.5
+
 ## License
 
 MIT License © 2023 [XLor](https://github.com/yjl9903)

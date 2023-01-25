@@ -2,7 +2,8 @@ FROM ubuntu:22.04
 
 RUN apt-get update \
   && apt-get dist-upgrade -y \
-  && apt-get install -y gnupg ca-certificates curl wget unzip zip locales \
+  && apt-get install -y gnupg ca-certificates curl wget unzip zip locales software-properties-common \
+  && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -16,13 +17,15 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && export UBUNTU_VERSION="$(. /etc/os-release && echo "$VERSION_ID")" \
   # Key: LLVM repo
   && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-  # Key: Python repo
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776 \
-  # Key: Go repo
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F6BC817356A3D45E \
   && echo "deb http://apt.llvm.org/$UBUNTU_CODENAME/ llvm-toolchain-$UBUNTU_CODENAME-$LLVM_VERSION main" > /etc/apt/sources.list.d/llvm.list \
-  && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $UBUNTU_CODENAME main" > /etc/apt/sources.list.d/python.list \
-  && echo "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu $UBUNTU_CODENAME main" >  /etc/apt/sources.list.d/go.list \
+  && add-apt-repository ppa:deadsnakes/ppa \
+  && add-apt-repository ppa:longsleep/golang-backports \
+  # Key: Python repo
+  # && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776 \
+  # Key: Go repo
+  # && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F6BC817356A3D45E \
+  # && echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $UBUNTU_CODENAME main" > /etc/apt/sources.list.d/python.list \
+  # && echo "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu $UBUNTU_CODENAME main" >  /etc/apt/sources.list.d/go.list \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
       g++-$GCC_VERSION-multilib \
