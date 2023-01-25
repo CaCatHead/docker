@@ -3,25 +3,9 @@ name: Release Docker image
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
-  tag:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
   push:
     name: Push Docker image to Docker Hub
     
@@ -48,6 +32,4 @@ jobs:
         with:
           context: ./sandbox
           push: true
-          tags: |
-            latest
-            ${{ env.GITHUB_REF_NAME }}
+          tags: ${{ env.GITHUB_REF_NAME }}

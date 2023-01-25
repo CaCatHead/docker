@@ -32,4 +32,4 @@ jobs:
         with:
           context: ./sandbox
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: latest
