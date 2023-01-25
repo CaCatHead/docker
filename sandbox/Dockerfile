@@ -2,11 +2,11 @@ FROM ubuntu:22.04
 
 ENV GCC_VERSION="12" \
     LLVM_VERSION="14" \
-    OPENJDK_VERSION="17" \
-    LC_ALL=en_US.UTF-8
+    OPENJDK_VERSION="17"
 
 RUN sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
   && locale-gen \
+  && export LC_ALL=en_US.UTF-8 \
   && echo 'LC_ALL=en_US.UTF-8' > /etc/default/locale \
   && apt-get update \
   && apt-get dist-upgrade -y \
