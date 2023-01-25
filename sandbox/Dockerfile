@@ -49,5 +49,6 @@ RUN gcc --version \
   && clang --version \
   && clang++ --version \
   && java -version \
+  && python3 --version \
   && go version \
   && node --version
