@@ -41,7 +41,10 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
   && apt-get clean \
   && apt-get autoclean \
   && apt-get autoremove \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && add-apt-repository --remove ppa:deadsnakes/ppa \
+  && add-apt-repository --remove ppa:longsleep/golang-backports \
+  && rm -rf /etc/apt/sources.list.d/*
 
 ADD ./testlib/testlib.h /usr/include/
 
