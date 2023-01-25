@@ -30,9 +30,9 @@ RUN export UBUNTU_CODENAME="$(. /etc/os-release && echo "$UBUNTU_CODENAME")" \
       libc++abi-$LLVM_VERSION-dev \
       openjdk-$OPENJDK_VERSION-jdk \
       python2.7 \
-      python3.9 \
       python3.10 \
       golang-go \
+      nodejs \
   && ln -s /usr/bin/g++-$GCC_VERSION /usr/local/bin/g++ \
   && ln -s /usr/bin/gcc-$GCC_VERSION /usr/local/bin/gcc \
   && ln -s /usr/bin/clang-$LLVM_VERSION /usr/local/bin/clang \
